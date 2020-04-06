@@ -33,7 +33,6 @@
         <?php 
             $path = './' . $_GET["path"];
             $files_and_dirs = scandir($path);
-            $current_dir_path_parts = explode('\\', getcwd());
 
             print('<h2>Directory contents: ' . str_replace('?path=','',$_SERVER['REQUEST_URI']) . '</h2>');
 

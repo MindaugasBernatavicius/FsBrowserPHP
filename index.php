@@ -1,4 +1,26 @@
 <?php
+    session_start(); 
+
+    // login logic
+    $msg = '';
+    if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {	
+       if ($_POST['username'] == 'Mindaugas' && $_POST['password'] == '1234') {
+          $_SESSION['logged_in'] = true;
+          $_SESSION['username'] = 'Mindaugas';
+       } else {
+          $msg = 'Wrong username or password';
+       }
+    }
+
+    // logout logic
+    if(isset($_GET['action']) and $_GET['action'] == 'logout'){
+        session_start();
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        unset($_SESSION['logged_in']);
+        // print('Logged out!');
+    }
+
     //  directory creation logic
     if(isset($_GET["create_dir"])){
         if($_GET["create_dir"] != ""){
@@ -52,7 +74,17 @@
         }
     </style>
     <body>
-        <?php 
+        <?php
+            if(!$_SESSION['logged_in'] == true){
+                print('<form action = "" method = "post">');
+                print('<h4>' . $msg . '</h4>');
+                print('<input type = "text" name = "username" placeholder = "username = Mindaugas" required autofocus></br>');
+                print('<input type = "password" name = "password" placeholder = "password = 1234" required>');
+                print('<button class = "btn btn-lg btn-primary btn-block" type = "submit" name = "login">Login</button>');
+                print('</form>');
+                die();
+            }
+
             $path = './' . $_GET["path"];
             $files_and_dirs = scandir($path);
 
@@ -101,6 +133,7 @@
                 <input placeholder="Name of new directory" type="text" id="create_dir" name="create_dir">
                 <button type="submit">Submit</button>
             </form>
+            Click here to <a href = "index.php?action=logout"> logout.
         </nav>
     </body>
 </html>

@@ -41,12 +41,13 @@
             foreach ($files_and_dirs as $fnd){
                 if ($fnd != ".." and $fnd != ".") {
                     print('<tr>');
+                    // ./.git/logs
                     print('<td>' . (is_dir($path . $fnd) ? "Directory" : "File") . '</td>');
                     print('<td>' . (is_dir($path . $fnd) 
                                 ? '<a href="' . (isset($_GET['path']) 
                                         ? $_SERVER['REQUEST_URI'] . $fnd . '/' 
                                         : $_SERVER['REQUEST_URI'] . '?path=' . $fnd . '/') . '">' . $fnd . '</a>'
-                                : $fnd) 
+                                : $fnd)
                         . '</td>');
                     print('<td></td>');
                     print('</tr>');

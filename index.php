@@ -10,8 +10,8 @@
     }
 
     // directory deletion logic
-    if(isset($_POST['delete'])){
-        $objToDelete = './' . $_GET["path"] . $_POST['delete']; 
+    if(isset($_POST['delete'])){ // 'delete' = 'filename.txt'
+        $objToDelete = './' . $_GET["path"] . $_POST['delete']; // ./dir1/file.txt
         $objToDeleteEscaped = str_replace("&nbsp;", " ", htmlentities($objToDelete, null, 'utf-8'));
         if(is_file($objToDeleteEscaped)){
             if (file_exists($objToDeleteEscaped)) {
@@ -53,7 +53,7 @@
     </style>
     <body>
         <?php 
-            $path = './' . $_GET["path"];
+            $path = './' . $_GET["path"]; // "path" = "./dir1/dir/
             $files_and_dirs = scandir($path);
 
             print('<h2>Directory contents: ' . str_replace('?path=/','',$_SERVER['REQUEST_URI']) . '</h2>');

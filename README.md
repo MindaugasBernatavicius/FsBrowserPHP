@@ -10,3 +10,8 @@ This is a file system browser write in php, used as a practical task in PHP prog
 - Clone the repostory
 - Open the path where you can launch php interpreter, e.g.: http//localhost/FsBrowserPHP
 - Login w/ credentials that are provided in the form as placeholders.
+
+## Usage
+- The functionality should be intuitive
+- One important note: the app illustrates how to to develop in a gradual manner, and each git branch illustrates a different step in the process.
+- The most complete app / functionality is in the task-1.4 branch 

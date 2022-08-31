@@ -14,10 +14,11 @@
 
     // logout logic
     if(isset($_GET['action']) and $_GET['action'] == 'logout'){
+        session_destroy();
         session_start();
-        unset($_SESSION['username']);
-        unset($_SESSION['password']);
-        unset($_SESSION['logged_in']);
+        // unset($_SESSION['username']);
+        // unset($_SESSION['password']);
+        // unset($_SESSION['logged_in']);
         // print('Logged out!');
     }
 
@@ -75,7 +76,7 @@
     </style>
     <body>
         <?php
-            if(!$_SESSION['logged_in'] == true){
+            if(!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] == false){
                 print('<form action = "" method = "post">');
                 print('<h4>' . $msg . '</h4>');
                 print('<input type = "text" name = "username" placeholder = "username = Mindaugas" required autofocus></br>');
@@ -129,7 +130,7 @@
             </button>
             <br>
             <form action="/FsBrowserPHP" method="get">
-                <input type="hidden" name="path" value="<?php print($_GET['path']) ?>" /> 
+                <input type="hidden" name="path" value="<?php print(isset($_GET['path']) ? $_GET['path'] : '') ?>" /> 
                 <input placeholder="Name of new directory" type="text" id="create_dir" name="create_dir">
                 <button type="submit">Submit</button>
             </form>
